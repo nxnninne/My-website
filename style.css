@@ -1,0 +1,170 @@
+/* ฟอนต์ใหม่: คม เท่ เงียบ แต่เจ็บ */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Inter:wght@300;400;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    height: 100vh;
+    color: #eaeaea;
+
+    /* image ninja */
+    background-image:
+        linear-gradient(rgba(14, 21, 40, 0.65), rgba(10,15,30,0.85)),
+        url("https://i.pinimg.com/1200x/ba/3d/d3/ba3dd34f9672dd6a2d88a9d19eb388f6.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+
+    overflow: hidden;
+}
+
+/* ❄️ หิมะ */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("https://i.imgur.com/5b3K6QF.png");
+    opacity: 0.25;
+    pointer-events: none;
+    animation: snow 20s linear infinite;
+}
+
+@keyframes snow {
+    from { background-position: 0 0; }
+    to   { background-position: 0 1000px; }
+}
+
+/* ===============================
+   เมนูด้านบน
+================================ */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 28px 50px;
+}
+
+.logo {
+    font-size: 1.4rem;
+    letter-spacing: 3px;
+    font-weight: 600;
+    color: #e6f0ff;
+    opacity: 0.85;
+}
+
+.top-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 35px;
+}
+
+.top-nav a {
+    text-decoration: none;
+    color: #e6f0ff;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    opacity: 0.75;
+    transition: all 0.35s ease;
+}
+
+.top-nav a:hover {
+    opacity: 1;
+    text-shadow: 0 0 14px rgba(200,220,255,0.6);
+}
+
+/* ===============================
+   Hero กลางจอ
+================================ */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* ✅ ตัวหลัก — หนา ชัด แต่ยังเศร้า */
+.hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.5rem;
+    font-weight: 800; /* ตัวหนา */
+    letter-spacing: 4px;
+
+    color: rgba(235,240,255,0.9);
+
+    text-shadow:
+        0 0 25px rgba(180,200,255,0.35),
+        0 0 80px rgba(90,110,180,0.25);
+
+    mix-blend-mode: screen;
+}
+
+/* ข้อความรอง — เป็นเงาข้างหลัง */
+.hero p {
+    margin-top: 22px;
+    font-size: 1.2rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+
+    color: rgba(200,200,220,0.25);
+    transform: translateY(-12px);
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero p {
+        font-size: 0.95rem;
+    }
+
+    .top-nav {
+        padding: 20px 30px;
+    }
+
+    .top-nav ul {
+        gap: 20px;
+    }
+    .hero p {
+    /* ... ของเดิม ... */
+    border-right: 2px solid rgba(200,200,220,0.5); /* เพิ่มเส้น Cursor กระพริบ */
+    white-space: nowrap;
+    overflow: hidden;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sword-slash {
+    position: fixed;
+    width: 200px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    box-shadow: 0 0 15px #fff;
+    pointer-events: none;
+    z-index: 9999;
+    animation: slash-anim 0.6s ease-out forwards;
+}
+
+@keyframes slash-anim {
+    0% { width: 0; opacity: 1; }
+    50% { width: 300px; opacity: 1; }
+    100% { width: 400px; opacity: 0; }
+}
+}

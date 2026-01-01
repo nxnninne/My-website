@@ -1,0 +1,337 @@
+/* 1. SETUP & VARIABLES*/
+:root {
+    --bg-deep: #050505;
+    --bg-panel: rgba(20, 25, 35, 0.7);
+    --accent-primary: #00f3ff;
+    --accent-secondary: #bd00ff;
+    --text-main: #e0e0e0;
+    --text-muted: #8892b0;
+
+    --card-radius: 6px;
+    --border-glass: 1px solid rgba(255, 255, 255, 0.1);
+
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-code: 'JetBrains Mono', monospace;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: var(--font-heading);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* 2. BACKGROUND IMAGE + EFFECT */
+.geo-background-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        linear-gradient(rgba(53, 52, 52, 0.35), rgba(53, 52, 52, 0.35)),
+        url("./0D6E841B-A7B6-4B35-A6D8-99540FAEF3AB.jpeg");
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.geo-background-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 50%, rgba(0,243,255,0.08), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(189,0,255,0.08), transparent 30%);
+}
+/* เพิ่ม Pseudo-element เพื่อสร้างแสงฟุ้งจางๆ */
+.geo-background-wrapper::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 15% 50%, rgba(0,243,255,0.08), transparent 30%),
+        radial-gradient(circle at 85% 30%, rgba(189,0,255,0.08), transparent 30%);
+}
+
+/* 3. NAVIGATION */
+header {
+    
+   position: fixed;
+    top: 10;
+    width: 100%;
+    padding: 24px 48px;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--font-code);
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    color: var(--accent-primary);
+    text-decoration: none;
+    margin-right: auto;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 36px;
+    margin-left: auto;
+}
+
+.nav-links a,
+.nav-links button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    /* font-size: 0.85rem;
+    letter-spacing: 1px; */
+    color: #fff;
+    opacity: 0.75;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links button:hover {
+    opacity: 1;
+    text-shadow: 0 0 12px rgba(200,220,255,0.4);
+}
+
+#contact-trigger {
+    padding: 8px 18px;
+    border: 1px solid var(--accent-primary);
+    color: var(--accent-primary);
+    font-family: var(--font-code);
+    clip-path: polygon(10% 0, 100% 0, 100% 70%, 90% 100%, 0 100%, 0 30%);
+}
+
+/* 4. HERO */
+
+.section-hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.glitch-text {
+    font-size: clamp(3rem, 8vw, 6rem);
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    mix-blend-mode: exclusion;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;}
+
+/* 5. WORK SECTION*/
+.section-work {
+    padding: 120px 10%;
+    max-width: 1400px;
+    margin: auto;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+/* PROJECT CARD (FIX + EFFECT) */
+.project-card {
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-panel);
+    border: var(--border-glass);
+    border-radius: var(--card-radius);
+    backdrop-filter: blur(6px);
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent-primary);
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 20%,
+        rgba(0,243,255,0.15),
+        transparent 80%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+/* CARD VISUAL */
+.card-visual {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-visual img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.project-card:hover img {
+    transform: scale(1.08);
+    filter: brightness(1.1) contrast(1.05);
+}
+
+/* OVERLAY ICON */
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: rgba(0,0,0,0.35);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-card:hover .card-overlay {
+    opacity: 1;
+}
+
+.card-overlay svg {
+    width: 64px;
+    height: 64px;
+    fill: none;
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    filter: drop-shadow(0 0 12px rgba(0,243,255,0.6));
+}
+
+/* CARD CONTENT*/
+.card-content {
+    padding: 18px 20px 22px;
+}
+
+.card-content h3 {
+    font-size: 1rem;
+    margin-bottom: 6px;
+    color: #fff;
+}
+
+.card-content p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+}
+
+/* TECH STACK */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.tech-stack span {
+    font-size: 0.65rem;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: rgba(0,243,255,0.12);
+    color: var(--accent-primary);
+    font-family: var(--font-code);
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(0,243,255,0.3);
+}
+
+/*TIME */
+.card-content time {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    opacity: 0.7;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 40px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+
+    .hidden {
+    opacity: 0;
+    transform: translateY(40px);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+}
+/*  FILTER BUTTONS */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 243, 255, 0.2);
+    color: var(--text-muted);
+    padding: 8px 24px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: var(--font-code);
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: rgba(0, 243, 255, 0.1);
+    border-color: var(--accent-primary);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+}
+
+/* เพิ่มสีให้ Tag ภาษาโปรแกรมดูแยกง่ายขึ้น */
+.tech-stack span[data-lang="Python"] { border-color: #306998; color: #ffd43b; }
+.tech-stack span[data-lang="SQL"] { border-color: #e38c00; color: #e38c00; }
+.tech-stack span[data-lang="R"] { border-color: #276dc3; color: #8cbaf1; }
+.tech-stack span[data-lang="C"] { border-color: #555; color: #aaa; }
+
+}
