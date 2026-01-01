@@ -1,4 +1,4 @@
-/* ฟอนต์ใหม่: คม เท่ เงียบ แต่เจ็บ */
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800&family=Inter:wght@300;400;600&display=swap');
 
 * {
@@ -23,12 +23,12 @@ body {
     overflow: hidden;
 }
 
-/* ❄️ หิมะ */
+/* หิมะ */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: url("https://i.imgur.com/5b3K6QF.png");
+    background-image: url("https://img.freepik.com/free-vector/christmas-snow-overlay-banner_1048-11097.jpg?semt=ais_hybrid&w=740&q=80");
     opacity: 0.25;
     pointer-events: none;
     animation: snow 20s linear infinite;
@@ -39,9 +39,7 @@ body::before {
     to   { background-position: 0 1000px; }
 }
 
-/* ===============================
-   เมนูด้านบน
-================================ */
+/* เมนูด้านบน*/
 header {
     position: fixed;
     top: 0;
@@ -84,9 +82,7 @@ header {
     text-shadow: 0 0 14px rgba(200,220,255,0.6);
 }
 
-/* ===============================
-   Hero กลางจอ
-================================ */
+/* Hero กลางจอ */
 .hero {
     height: 100vh;
     display: flex;
@@ -96,7 +92,7 @@ header {
     text-align: center;
 }
 
-/* ✅ ตัวหลัก — หนา ชัด แต่ยังเศร้า */
+/* Hero */
 .hero h1 {
     font-family: 'Playfair Display', serif;
     font-size: 4.5rem;
@@ -123,9 +119,7 @@ header {
     transform: translateY(-12px);
 }
 
-/* ===============================
-   Responsive
-================================ */
+/* Responsive */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 3rem;
@@ -143,7 +137,7 @@ header {
         gap: 20px;
     }
     .hero p {
-    /* ... ของเดิม ... */
+    /*  ของเดิม  */
     border-right: 2px solid rgba(200,200,220,0.5); /* เพิ่มเส้น Cursor กระพริบ */
     white-space: nowrap;
     overflow: hidden;
